@@ -1,5 +1,28 @@
 const express = require("express");
 const router = express.Router();
+// const {InsertResume} = require("../Database/index.js")
+
+
+
+const {PrismaClient} = require("@prisma/client")
+
+const prisma = new PrismaClient();
+
+
+
+async function InsertResume(username, data1){
+  await prisma.user.update({
+      where: {
+          email : username
+      },
+      data : {
+        resume : data1
+      }
+  });
+
+  console.log("Updated");
+}
+
 
 const dotenv = require("dotenv");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
@@ -28,7 +51,14 @@ async function run(data) {
 }
 
 router.get("/questions", (req, res) => {
-  run();
+  // run();
+  InsertResume("vivek@gmail.com", "Hello World");
+  res.send("Question Generation model");
+});
+
+module.exports = router;
+
+
 
 /*
 
@@ -54,8 +84,3 @@ map -> skills : question
 
 
 */
-
-  res.send("Question Generation model");
-});
-
-module.exports = router;
