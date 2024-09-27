@@ -1,6 +1,7 @@
 const fs = require("fs");
 const PdfReader = require("pdfreader").PdfReader;
 const express = require("express");
+const {InsertResume} = require("../Database/index.js")
 const router = express.Router();
 
 function ReadResume() {
@@ -36,8 +37,9 @@ function ReadResume() {
     };
 
     try {
-      data = await parsePdf(); // Wait for PDF parsing to complete
-      console.log(data);
+      data = await parsePdf(); 
+      InsertResume("vivek@gmail.com", data);
+      console.log("Resume data inserted to DB");
     } catch (error) {
       console.error("Error during PDF parsing:", error);
     }
@@ -45,6 +47,7 @@ function ReadResume() {
 }
 
 router.get("/parser", (req, res) => {
+  ReadResume();
   res.send("Parser Page");
 });
 

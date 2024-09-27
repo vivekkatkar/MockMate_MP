@@ -1,63 +1,99 @@
 const express = require("express");
 const router = express.Router();
-// const {InsertResume} = require("../Database/index.js")
 
-
-
-const {PrismaClient} = require("@prisma/client")
-
-const prisma = new PrismaClient();
-
-
-
-async function InsertResume(username, data1){
-  await prisma.user.update({
-      where: {
-          email : username
-      },
-      data : {
-        resume : data1
-      }
-  });
-
-  console.log("Updated");
-}
-
+const {getResumeData} = require("../Database/index.js")
+const {Interview} = require("./InterviewSimulation.js");
 
 const dotenv = require("dotenv");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 dotenv.config();
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
+const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
-async function run(data) {
-  const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-  //   const prompt =
-  //     "return an json object of questions for interviewe, ask questions which are related to the provided skills and fields in the input and usualy asked in technical round. THE QUESTIONS SHOULD BE IN JSON FORMAT. Directly reply with json object nothing after or before in response. Dont pass any variables in the questions you provide. Do not send an array of questions, give questions directly in json example 'Personal questions': {question': 'what is your name?'}";
 
-  const prompt1 = `Generate a JSON object containing questions typically asked in technical rounds, related to the provided skills and fields. The response should follow the exact format below, with questions labeled as 'question 1', 'question 2', and so on. Do not include any text or variables in the questions. Return the response as a JSON object with keys as 'question 1', 'question 2', etc. Do not include any arrays or additional text before or after the JSON object. Example response: { 'question 1': 'What is your name?', 'question 2': 'What are your technical skills?', 'question 3': 'Explain how a binary search works?' }`;
+const cleanResponse = (response) => {
+  const jsonStart = response.indexOf('{');
+  const jsonEnd = response.lastIndexOf('}');
+  return response.substring(jsonStart, jsonEnd + 1);
+};
 
-  const result = await model.generateContent(data + prompt1);
+async function seperateData(userData){
+  const prompt = "Please parse the following resume into a JSON object with clearly defined sections. Each section should be a separate key in the JSON object. The keys should include: 'Personal Information', 'Education', 'Work Experience', 'Skills', 'Projects', and any other relevant sections. Make sure the response is in strict JSON format so that it can be parsed without errors.";
+  const result = await model.generateContent(userData + " " + prompt);
+  const response = await result.response;
+  const text = response.text();
+  
+  const cleanedRes = cleanResponse(text);
+
+  const parsedData = JSON.parse(cleanedRes);
+  const resumeMap = new Map();
+
+  Object.keys(parsedData).forEach(section => {
+    resumeMap.set(section, parsedData[section]);
+  });
+
+  return resumeMap;
+}
+
+async function getQuestions(section, data, cnt){
+  const prompt = data + `This is candidates ${section} related data, please provide ${cnt} questions for his/her interview , questions should be relavant to his/her data provided. Response should contain question number as key and question as value don't provide any other information. Make sure the response is in strict JSON format so that it can be parsed without errors.`
+  const result = await model.generateContent(prompt);
   const response = await result.response;
   const text = response.text();
 
-  try {
-    const jsonText = JSON.parse(text);
-    console.log(jsonText);
-  } catch (err) {
-    console.log("Error!!");
-  }
+  const cleanedRes = cleanResponse(text);
+  const parsedData = JSON.parse(cleanedRes);
+  
+  let queList = []
+  Object.keys(parsedData).forEach(section => {
+    queList.push(parsedData[section]);
+  });
 
-  //   console.log(text);
+  // console.log(section + " :- ");
+  // console.log(queList);
+
+  return queList;
 }
 
-router.get("/questions", (req, res) => {
-  // run();
-  InsertResume("vivek@gmail.com", "Hello World");
-  res.send("Question Generation model");
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
+function mapToList(queMap){
+  let sections = Array.from(queMap.keys());
+  shuffleArray(sections);
+
+  let queArray = [];
+  sections.forEach(sec => {
+    queArray.push(...queMap.get(sec));
+  });
+
+  return queArray;
+}
+
+router.get("/questions", async (req, res) => {
+  console.log("API called");
+  const userdata = await getResumeData("vivek@gmail.com");
+
+  const map = await seperateData(userdata.resume);
+  const queMap = new Map();
+
+  for (let [key, value] of map.entries()){
+    const cnt = 3;
+    const queList = await getQuestions(key, value, cnt);
+    queMap.set(key, queList);
+  }
+
+  const queList = mapToList(queMap);
+  Interview(queList);
+  
+  res.send("Question Generation model : User");
 });
 
 module.exports = router;
-
 
 
 /*

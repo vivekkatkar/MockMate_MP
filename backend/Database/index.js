@@ -7,10 +7,28 @@ async function InsertResume(username, data){
         where: {
             email : username
         },
-        data : data
+        data :{
+            resume :  data
+        }
     });
 
-    console.log("Updated");
+    console.log("User resume data updated");
 }
 
-module.exports = InsertResume
+async function getResumeData(username){
+    const res = await prisma.user.findFirst({
+        select : {
+            resume : true
+        },
+        where : {
+            email : username
+        }
+    });
+
+    return res;
+}
+
+module.exports = {
+    InsertResume,
+    getResumeData
+};
