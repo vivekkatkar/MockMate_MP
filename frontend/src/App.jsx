@@ -50,34 +50,38 @@ function App() {
   };
 
   return (
-    <div className="App">
-    <h1>Mock Interview</h1>
-  
-    {!isInterviewComplete ? (
-      <>
-        {question ? (
-          <div>
-            <p className="question"><strong>Question:</strong> {question}</p>
-            <form onSubmit={handleSubmit}>
-              <input
-                type="text"
-                value={answer}
-                onChange={(e) => setAnswer(e.target.value)}
-                placeholder="Type your answer"
-                required
-              />
-              <button type="submit">Submit Answer</button>
-            </form>
-          </div>
-        ) : (
-          <p className="waiting-message">Waiting for the first question...</p>
-        )}
-      </>
-    ) : (
-      <p className="completed-message">The interview is complete. Thank you for participating!</p>
-    )}
-  </div>
-  
+    <div className="bg-gray-100 h-screen flex flex-col items-center justify-center p-4">
+      <h1 className="text-3xl font-bold mb-6 text-gray-800">Mock Interview</h1>
+
+      {!isInterviewComplete ? (
+        <>
+          {question ? (
+            <div className="bg-white shadow-md rounded-lg p-6 w-full max-w-md">
+              <p className="text-lg mb-4"><strong>Question:</strong> {question}</p>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <input
+                  type="text"
+                  value={answer}
+                  onChange={(e) => setAnswer(e.target.value)}
+                  placeholder="Type your answer"
+                  className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  required
+                />
+                <button 
+                  type="submit" 
+                  className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300">
+                  Submit Answer
+                </button>
+              </form>
+            </div>
+          ) : (
+            <p className="text-gray-600 text-lg">Waiting for the first question...</p>
+          )}
+        </>
+      ) : (
+        <p className="text-green-500 text-xl font-semibold">The interview is complete. Thank you for participating!</p>
+      )}
+    </div>
   );
 }
 
