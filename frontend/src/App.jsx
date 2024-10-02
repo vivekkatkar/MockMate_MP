@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import botImage from './assets/bot.png'; // Assuming you place the bot image in the assets folder
 
 function App() {
   const [question, setQuestion] = useState(null);  
@@ -56,15 +57,16 @@ function App() {
       {!isInterviewComplete ? (
         <>
           {question ? (
-            <div className="bg-white shadow-md rounded-lg p-6 w-full max-w-md">
-              <p className="text-lg mb-4"><strong>Question:</strong> {question}</p>
+            <div className="bg-white shadow-md rounded-lg p-6 w-full max-w-md relative">
+              <img src={botImage} alt="Bot" className="bot-icon" /> {/* Bot Icon */}
+              <p className="text-lg mb-4 text-dark-gray"><strong>Bot:</strong> {question}</p>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <input
                   type="text"
                   value={answer}
                   onChange={(e) => setAnswer(e.target.value)}
                   placeholder="Type your answer"
-                  className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full p-2 input border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   required
                 />
                 <button 
