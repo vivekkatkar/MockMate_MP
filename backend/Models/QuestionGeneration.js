@@ -153,10 +153,11 @@ module.exports = router;
 
 /*
 
-1. response parser
-2. Accuracy predictor
-3. Difficulty adjacement
-4. Questions adjacements
-5. Scheduler 
+1. Deploy
+2. Resume upload
+3. Frontend Design 
+4. Timer 
+
+5. Solve Issue of multiple API Calls 
 
 */
