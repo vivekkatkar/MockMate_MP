@@ -44,7 +44,7 @@ function jsonToString(data) {
 }
 
 async function seperateData(userData){
-  const prompt = "Please parse the following resume into a JSON object with clearly defined sections. Each section should be a separate key in the JSON object. The keys should include: 'Personal Information', 'Education', 'Work Experience', 'Skills', 'Projects', and any other relevant sections. Make sure the response is in strict JSON format so that it can be parsed without errors.";
+  const prompt = "Please parse the following resume into a JSON object with clearly defined sections. Each section should be a separate key in the JSON object. The keys should include: 'Work Experience', 'Technical Skills', 'Soft skills', 'Projects', and any other relevant sections. Make sure the response is in strict JSON format so that it can be parsed without errors.";
   const result = await model.generateContent(userData + " " + prompt);
   const response = await result.response;
   const text = response.text();
@@ -60,10 +60,10 @@ async function seperateData(userData){
   });
 
   return resumeMap;
-}
+} 
 
 async function getQuestions(section, data, cnt){
-  const prompt = data + `This is candidates ${section} related data, please provide ${cnt} questions for his/her interview , questions should be relavant to his/her data provided. Response should contain question number as key and question as value don't provide any other information. Make sure the response is in strict JSON format so that it can be parsed without errors.`
+  const prompt = data + `This is candidates ${section} related data, please provide ${cnt} questions for his/her interview , questions should be relavant to his/her data provided. Response should contain question number as key and question as value don't provide any other information. Don't consider personal information such as address, phone no, etc and education like schooling, etc while generating questions. Make sure the response is in strict JSON format so that it can be parsed without errors.`
   const result = await model.generateContent(prompt);
   const response = await result.response;
   const text = response.text();
@@ -93,12 +93,22 @@ function mapToList(queMap){
   let sections = Array.from(queMap.keys());
   shuffleArray(sections);
 
+  let val = 0;
+  let secIds = [];
+
   let queArray = [];
   sections.forEach(sec => {
     queArray.push(...queMap.get(sec));
+    const list = queMap.get(sec);
+    secIds.push(val);
+    val += list.length;
   });
 
-  return queArray;
+  var obj = {
+    quelst : queArray,
+    secId : secIds
+  }
+  return obj;
 }
 
 router.get("/questions", async (req, res) => {
@@ -116,8 +126,12 @@ router.get("/questions", async (req, res) => {
     queMap.set(key, queList);
   }
 
-  const queList = mapToList(queMap);
-  Interview(queList);
+  const obj = mapToList(queMap);
+  const queList = obj.quelst;
+  secIds = obj.secId;
+
+  console.log(queList);
+  Interview(queList, secIds);
   
   res.send("Question Generation model : User");
 });
@@ -127,9 +141,8 @@ router.get("/questions", async (req, res) => {
 router.get("/test", async (req, res) => {
   console.log("testing.....");
 
-  const userdata = await getResumeData("vivek@gmail.com");
-  const map = await seperateData(userdata.resume);
   
+
   res.send("Testing Completed");
 });
 
@@ -137,3 +150,13 @@ router.get("/test", async (req, res) => {
 
 module.exports = router;
 
+
+/*
+
+1. response parser
+2. Accuracy predictor
+3. Difficulty adjacement
+4. Questions adjacements
+5. Scheduler 
+
+*/
