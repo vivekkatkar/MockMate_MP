@@ -157,7 +157,9 @@ module.exports = router;
 2. Resume upload
 3. Frontend Design 
 4. Timer 
-
 5. Solve Issue of multiple API Calls 
+6. Registration / Login
+
+
 
 */

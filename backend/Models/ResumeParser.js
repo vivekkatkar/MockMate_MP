@@ -5,7 +5,7 @@ const {InsertResume} = require("../Database/index.js")
 const router = express.Router();
 
 function ReadResume() {
-  fs.readFile("./Pratiksha_Resume.pdf", async (err, pdfBuffer) => {
+  fs.readFile("./Vaishnavi_Yadav_Resume.pdf", async (err, pdfBuffer) => {
     if (err) {
       console.error("Error reading PDF:", err);
       return;

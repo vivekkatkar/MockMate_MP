@@ -14,6 +14,11 @@ app.get("/", (req, res) => {
   res.send("Home Page");
 });
 
+app.post("/upload", (req, res) => {
+  console.log("Hello World");
+  res.send("Resume Uploaded");
+});
+
 const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`App is running at PORT ${PORT}`);

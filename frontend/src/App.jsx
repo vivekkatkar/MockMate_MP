@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import botImage from './assets/bot.png'; // Assuming you place the bot image in the assets folder
+import botImage from './assets/bot.png'; 
 
 function App() {
   const [question, setQuestion] = useState(null);  
