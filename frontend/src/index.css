@@ -22,6 +22,11 @@
 
 
 /* Heading */
+
+.h-20 {
+    height: 9rem;
+}
+
 h1 {
     color: #ffffff;
     font-size: 4rem;

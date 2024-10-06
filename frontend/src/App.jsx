@@ -5,7 +5,9 @@ import Dashboard from './Components/Dashboard';
 import UserProfile from './Components/UserProfile';
 import InterviewSession from './Components/InterviewSession';
 import Login from './Pages/Login';
-import { Signup } from './Pages/SignUp';
+import { Signup } from './Pages/Signup';
+import Home from './Pages/Home';
+
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
             <Route path="/interviewSession" element={<InterviewSession />} />
             <Route path="/login" element={<Login />} />
             <Route path="/Signup" element={<Signup />} />
+            <Route path="/" element={<Home />} />
         </Routes>
     </Router>
   );
