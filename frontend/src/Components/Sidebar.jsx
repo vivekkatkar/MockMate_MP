@@ -1,17 +1,33 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { FaHome, FaUserAlt, FaUsers, FaBook, FaClipboard, FaClock, FaChartLine } from 'react-icons/fa';
 
 const Sidebar = () => {
-    return (
-        <div className="sidebar">
-            <h2>Dashboard</h2>
-            <ul>
-                <li><Link to="/profile">Profile</Link></li>
-                <li><Link to="/settings">Settings</Link></li>
-                <li><Link to="/analytics">Analytics</Link></li>
-            </ul>
+  return (
+    <div className="h-screen w-64 bg-white shadow-md flex flex-col "> 
+      {/* Brand Header */}
+      <div className="p-4 text-lg font-bold text-indigo-600 flex items-center">
+        <FaChartLine className="mr-2" />
+        MockMate
+      </div>
+
+      {/* Navigation Menu */}
+      <div className="flex flex-col p-4 space-y-2">
+        <a href="/" className="flex items-center p-2 text-gray-700 hover:bg-gray-100 rounded-lg">
+          <FaHome className="mr-3" /> Dashboard
+        </a>
+        
+      </div>
+
+      {/* User Profile
+      <div className="p-4 flex items-center space-x-4">
+        <img src="https://via.placeholder.com/40" alt="User Avatar" className="rounded-full" />
+        <div className="text-gray-700">
+          <div className="font-bold">Bonyra Jon</div>
+          <div className="text-sm">Admin (M)</div>
         </div>
-    );
+      </div> */}
+    </div>
+  );
 };
 
 export default Sidebar;
