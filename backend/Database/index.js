@@ -1,34 +1,34 @@
-const {PrismaClient} = require("@prisma/client")
+const { PrismaClient } = require("@prisma/client");
 
 const prisma = new PrismaClient();
 
-async function InsertResume(username, data){
-    await prisma.user.update({
-        where: {
-            email : username
-        },
-        data :{
-            resume :  data
-        }
-    });
+async function InsertResume(username, data) {
+  await prisma.user.update({
+    where: {
+      email: username,
+    },
+    data: {
+      parsedResume: data,
+    },
+  });
 
-    console.log("User resume data updated");
+  console.log("User resume data updated");
 }
 
-async function getResumeData(username){
-    const res = await prisma.user.findFirst({
-        select : {
-            resume : true
-        },
-        where : {
-            email : username
-        }
-    });
+async function getResumeData(username) {
+  const res = await prisma.user.findFirst({
+    select: {
+      parsedResume: true,
+    },
+    where: {
+      email: username,
+    },
+  });
 
-    return res;
+  return res;
 }
 
 module.exports = {
-    InsertResume,
-    getResumeData
+  InsertResume,
+  getResumeData,
 };
