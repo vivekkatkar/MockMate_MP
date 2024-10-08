@@ -28,6 +28,12 @@ async function getResumeData(username) {
   return res;
 }
 
+async function SignUp(data) {
+  try {
+    const res = await prisma.user.create({});
+  } catch (err) {}
+}
+
 module.exports = {
   InsertResume,
   getResumeData,
