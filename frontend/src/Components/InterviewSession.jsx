@@ -10,7 +10,13 @@ const InterviewSession = () => {
   const [transcript, setTranscript] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:3000/gemini/questions')
+    fetch('http://localhost:3000/gemini/questions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'  
+      },
+      body: JSON.stringify({ email: localStorage.getItem("email")}) 
+    })
       .then(response => response.text())
       .then(data => {
         const socket = new WebSocket('ws://localhost:8000');

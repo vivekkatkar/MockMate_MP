@@ -7,11 +7,13 @@ dotenv.config();
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
+
+const {addFeedback, finalizeFeedback} = require("../Database/index.js")
+
 const cleanResponse = (response) => {
     const jsonStart = response.indexOf('{');
     const jsonEnd = response.lastIndexOf('}');
     return  response.substring(jsonStart, jsonEnd + 1);
-    
 };
 
 async function nextQuestion(question , answer){
@@ -80,7 +82,7 @@ function getSecId(queIdx, currSec, secIds, cnt){
     return obj; 
 }
 
-async function Interview(queList, secIds){
+async function Interview(queList, secIds, reportId){
     console.log("Interview Started");
     
     wss.on("connection", (ws) => {
@@ -95,6 +97,8 @@ async function Interview(queList, secIds){
 
         ws.on("message", async (message) => {
             console.log("user response : " , message.toString());
+            addFeedback(reportId, queList[queIdx] + message.toString());
+
             const nextQue = await nextQuestion(queList[queIdx], message.toString());
             
             var obj = getSecId(queIdx, currSec, secIds, cnt);
@@ -117,7 +121,8 @@ async function Interview(queList, secIds){
             }
         });
 
-        ws.on("close", () => {
+        ws.on("close", async () => {
+            await finalizeFeedback(reportId);
             console.log("Websocket connection closed");
         });
 

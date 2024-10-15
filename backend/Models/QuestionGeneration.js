@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const {getResumeData} = require("../Database/index.js")
+const {getResumeData, addReport} = require("../Database/index.js")
 const {Interview} = require("./InterviewSimulation.js");
 
 const dotenv = require("dotenv");
@@ -49,8 +49,11 @@ async function seperateData(userData){
   const response = await result.response;
   const text = response.text();
   
-  const cleanedRes = cleanResponse(text);
+  
+  console.log("Printing gemini response : ", text);
 
+  const cleanedRes = cleanResponse(text);
+  console.log("Printing Cleaned response : ", cleanedRes);
   const parsedData = JSON.parse(cleanedRes);
   const resumeMap = new Map();
 
@@ -111,9 +114,15 @@ function mapToList(queMap){
   return obj;
 }
 
-router.get("/questions", async (req, res) => {
+router.post("/questions", async (req, res) => {
   console.log("API called");
-  const userdata = await getResumeData("vivek@gmail.com");
+  const username = req.body.email;
+ 
+  console.log(username);
+
+  const userdata = await getResumeData(username);
+  
+  console.log("Hello " , userdata);
 
   const map = await seperateData(userdata.resume);
   const queMap = new Map();
@@ -131,7 +140,9 @@ router.get("/questions", async (req, res) => {
   secIds = obj.secId;
 
   console.log(queList);
-  Interview(queList, secIds);
+
+  const reportId = await addReport(username);
+  Interview(queList, secIds, reportId);
   
   res.send("Question Generation model : User");
 });
@@ -140,9 +151,6 @@ router.get("/questions", async (req, res) => {
 // routes for testing purpose 
 router.get("/test", async (req, res) => {
   console.log("testing.....");
-
-  
-
   res.send("Testing Completed");
 });
 
@@ -160,6 +168,18 @@ module.exports = router;
 5. Solve Issue of multiple API Calls 
 6. Registration / Login
 
+
+
+*/
+
+/*
+
+1
+1 1
+1 2 1
+1 2 4 1
+1 2 4 8 1
+1 2 4 8 16 1
 
 
 */
