@@ -1,7 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import logo from '../assets/logo1.jpeg';
 
-export function Header() {
+export function Header({changeState, changeState1}) {
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -10,21 +11,21 @@ export function Header() {
   };
 
   return (
-    <header className="bg-blue-600 text-white p-4 flex items-center justify-between">
-      <div className="flex items-center">
-        <h1 className="text-xl font-bold">MockMate</h1>
+    <header className="bg-[#0a0e14] h-[60px] px-6 text-white flex items-center justify-between">
+      <div className='flex items-center'>
+        <img src={logo} alt="Logo" className="h-15 w-12 mr-2"/>
+        <p className="text-[1.5rem] font-extrabold text-[#00BFFF]">MockMate</p>
       </div>
-      <nav className="space-x-4">
-        <a href="/dashboard" className="hover:underline">Dashboard</a>
-        <a href="/profile" className="hover:underline">Profile</a>
-        <a href="/reports" className="hover:underline">Reports</a>
+      <nav className="flex items-center space-x-4">
+        <a href="#" className="hover:none" onClick={changeState} >Interview</a>
+        <a href="#" className="hover:none" onClick={changeState1} >Profile</a>
+        <button 
+          onClick={handleLogout} 
+          className="bg-red-500 hover:bg-red-700 text-white font-semibold py-1 px-3 rounded"
+        >
+          Logout
+        </button>
       </nav>
-      <button 
-        onClick={handleLogout} 
-        className="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded"
-      >
-        Logout
-      </button>
     </header>
   );
 }

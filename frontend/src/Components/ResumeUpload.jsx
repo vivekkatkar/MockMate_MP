@@ -20,7 +20,7 @@ export function ResumeUpload() {
 
     const formData = new FormData();
     formData.append('pdfFile', file);
-    formData.append('email', email); 
+    formData.append('email', email);
 
     try {
       const response = await fetch('http://localhost:3000/upload', {
@@ -39,20 +39,24 @@ export function ResumeUpload() {
   };
 
   return (
-    <div style={{ padding: '20px', maxWidth: '400px', margin: 'auto' }}>
-      <h2>Upload PDF</h2>
+    <div className="w-1/2 max-w-xl bg-[#111827] rounded-xl shadow-lg p-6">
+      <h3 className="text-xl text-white font-bold mb-4">Upload Resume</h3>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <input
           type="file"
           onChange={handleFileChange}
           accept="application/pdf"
+          className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none"
           required
         />
-        <br /><br />
-        <button type="submit">Upload PDF</button>
+        <button
+          type="submit"
+          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg"
+        >
+          Upload
+        </button>
       </form>
-
-      {uploadStatus && <p>{uploadStatus}</p>}
+      {uploadStatus && <p className="mt-4 text-green-600">{uploadStatus}</p>}
     </div>
   );
 }

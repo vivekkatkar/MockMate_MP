@@ -9,7 +9,7 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 const { route } = require("./ResumeParser.js");
 dotenv.config();
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 
 const cleanResponse = (response) => {
@@ -49,7 +49,6 @@ async function seperateData(userData){
   const response = await result.response;
   const text = response.text();
   
-  
   console.log("Printing gemini response : ", text);
 
   const cleanedRes = cleanResponse(text);
@@ -66,6 +65,7 @@ async function seperateData(userData){
 } 
 
 async function getQuestions(section, data, cnt){
+  console.log("Hello ", section);
   const prompt = data + `This is candidates ${section} related data, please provide ${cnt} questions for his/her interview , questions should be relavant to his/her data provided. Response should contain question number as key and question as value don't provide any other information. Don't consider personal information such as address, phone no, etc and education like schooling, etc while generating questions. Make sure the response is in strict JSON format so that it can be parsed without errors.`
   const result = await model.generateContent(prompt);
   const response = await result.response;
@@ -124,7 +124,7 @@ router.post("/questions", async (req, res) => {
   
   console.log("Hello " , userdata);
 
-  const map = await seperateData(userdata.resume);
+  const map = await seperateData(userdata.parsedResume);
   const queMap = new Map();
 
   for (let [key, value] of map.entries()){
@@ -168,18 +168,6 @@ module.exports = router;
 5. Solve Issue of multiple API Calls 
 6. Registration / Login
 
-
-
-*/
-
-/*
-
-1
-1 1
-1 2 1
-1 2 4 1
-1 2 4 8 1
-1 2 4 8 16 1
 
 
 */

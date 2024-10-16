@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { AiOutlineTwitter } from "react-icons/ai";
 import { BiLogoFacebook } from "react-icons/bi";
 import googleImage from '../assets/google.jpeg';
@@ -26,6 +26,14 @@ export const Login = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    useEffect(() => {
+        const mail = localStorage.getItem("email");
+        if (mail != null) {
+            console.log(mail);
+            navigate("/dashboard");
+        }
+    }, [navigate]);
 
     const handleLogin = async (e) => {
         e.preventDefault();
