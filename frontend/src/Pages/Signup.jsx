@@ -4,56 +4,68 @@ import { BiLogoFacebook } from "react-icons/bi";
 import googleImage from '../assets/google.jpeg';
 import { Link } from 'react-router-dom';
 
-const GoogleSignupButton = () => {
-    const handleSignup = () => {
-        console.log("Signing up with Google...");
-    };
-
-    return (
-        <div className="flex justify-center">
-            <button
-                onClick={handleSignup}
-                className="flex items-center bg-[#00BFFF] text-white border border-transparent rounded-lg shadow-md px-5 py-2 transition duration-200 ease-in-out transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#00BFFF]focus:ring-opacity-50"
-            >
-                <img src={googleImage} alt="Google" className="w-6 h-6 mr-2" />
-                <span className="font-semibold">Sign Up with Google</span>
-            </button>
-        </div>
-    );
-};
-
 export const Signup = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [passwordError, setPasswordError] = useState("");
+
+    const validatePassword = (password) => {
+        const lengthValid = password.length >= 8;
+        const numberValid = /\d/.test(password);
+        const specialCharValid = /[!@#$%^&*]/.test(password);
+        const uppercaseValid = /[A-Z]/.test(password);
+
+        if (!lengthValid) {
+            return "Password must be at least 8 characters long.";
+        }
+        if (!numberValid) {
+            return "Password must include at least one number.";
+        }
+        if (!specialCharValid) {
+            return "Password must include at least one special character.";
+        }
+        if (!uppercaseValid) {
+            return "Password must include at least one uppercase letter.";
+        }
+
+        return "";
+    };
 
     const handleSignup = async (e) => {
         e.preventDefault();
+
+        const passwordValidationError = validatePassword(password);
+        if (passwordValidationError) {
+            setPasswordError(passwordValidationError);
+            return;
+        }
+
         if (password !== confirmPassword) {
             alert("Passwords do not match!");
             return;
         }
-    
+
         const data = {
-            "userdata" : {
-                "name" : name,
-                "email" : email,
-                "password" : password
+            userdata: {
+                name: name,
+                email: email,
+                password: password
             }
         };
-    
+
         try {
             const response = await fetch('http://localhost:3000/user/signup', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json', 
+                    'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(data),
             });
-    
+
             if (response.ok) {
-                const result = await response.text(); 
+                const result = await response.text();
                 console.log("User signed up successfully:", result);
                 alert("Signup successful!");
             } else {
@@ -64,7 +76,6 @@ export const Signup = () => {
             console.error("Error signing up:", error);
         }
     };
-    
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-[#0a0e14]">
@@ -79,16 +90,6 @@ export const Signup = () => {
 
                 <div className="w-full md:w-1/2 md:pl-10">
                     <h2 className="text-3xl font-bold text-center text-[#00BFFF] mb-6">Create an Account</h2>
-
-                    <div className="flex justify-center mb-4 space-x-4">
-                        <GoogleSignupButton />
-                    </div>
-
-                    <div className="flex items-center mb-5">
-                        <div className="flex-1 border-t border-gray-600"></div>
-                        <p className="px-4 text-gray-400">Or</p>
-                        <div className="flex-1 border-t border-gray-600"></div>
-                    </div>
 
                     <form onSubmit={handleSignup}>
                         <input
@@ -112,8 +113,15 @@ export const Signup = () => {
                             placeholder="Password"
                             className="w-full p-3 mb-4 border border-gray-600 bg-[#121820] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00BFFF]"
                             value={password}
-                            onChange={(e) => setPassword(e.target.value)}
+                            onChange={(e) => {
+                                setPassword(e.target.value);
+                                setPasswordError(validatePassword(e.target.value));
+                            }}
                         />
+
+                        {passwordError && (
+                            <p className="text-red-500 text-sm mb-4">{passwordError}</p>
+                        )}
 
                         <input
                             type="password"
@@ -132,6 +140,7 @@ export const Signup = () => {
                         <button
                             className="w-full py-3 bg-[#00BFFF] text-white rounded-lg font-semibold hover:bg-[#00BFFF] transition duration-300"
                             type="submit"
+                            disabled={passwordError || !name || !email || !password || !confirmPassword}
                         >
                             Sign Up
                         </button>

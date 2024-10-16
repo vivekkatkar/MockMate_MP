@@ -16,6 +16,7 @@ const Home = () => {
         <div className="space-x-8 text-lg">
           <a href="#features" className="hover:text-[#00BFFF]">Features</a>
           <a href="/Signup" className="hover:text-[#00BFFF]">Signup</a>
+          <a href="/Login" className="hover:text-[#00BFFF]">Login</a>
           <a href="#contact" className="hover:text-[#00BFFF]">Contact Us</a> {/* New Contact Us link */}
         </div>
       </nav>

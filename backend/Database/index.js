@@ -164,8 +164,10 @@ async function finalizeFeedback(reId) {
     const prompt = `
   User Feedback: ${concatenatedFeedback}
 
-  Please provide feedback on the above responses. response should be simple string without any extra characters and length of response should be 50 words only
-  Additionally, suggest areas for improvement that could enhance the user experience and performance.
+  Please provide feedback on the above responses. response should be simple string without any extra characters (do not include any * or other symbols) and length of response should be 50 words only
+  Additionally, suggest areas for improvement that could enhance the user experience and performance make sure that the .
+
+  
 `;
 
 

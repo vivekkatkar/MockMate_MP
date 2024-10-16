@@ -13,13 +13,33 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: #0a0e14; /* Fallback background color */
-    /* background-image: url(assets/bg2.png); Background image */
+    background-color: #0a0e14; 
     background-size: cover; 
-    /* background-position: center;  */
-    background-repeat: no-repeat; /* Prevent repeating the background image*/
+   
+    background-repeat: no-repeat; 
 }
 
+.input-mode-toggle {
+    padding: 10px; /* Add some padding around the outer div */
+    background-color: #f0f0f0; /* Background color */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+  }
+  
+  .toggle {
+    cursor: pointer; /* Pointer cursor on hover */
+  }
+  
+
+
+.hide-scrollbar {
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
+  }
+  
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none; 
+  }
 
 /* Heading */
 
@@ -219,4 +239,36 @@ button:focus {
 /* Enhanced Transitions */
 .transition {
     transition: all 0.3s ease;
+}
+
+.floating-timer {
+  color:black;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent background */
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    font-size: 1.5rem; /* Adjust size as needed */
+    z-index: 10; /* Ensure it appears above other elements */
+}
+
+
+.floating-stop {
+
+  color:black;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent background */
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    font-size: 1.5rem; /* Adjust size as needed */
+    z-index: 10; /* Ensure it appears above other elements */
+}
+
+.floating-stop:hover{
+  cursor: pointer;
 }
