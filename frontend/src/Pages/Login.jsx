@@ -1,39 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { AiOutlineTwitter } from "react-icons/ai";
 import { BiLogoFacebook } from "react-icons/bi";
 import googleImage from '../assets/google.jpeg';
 import { Link, useNavigate } from 'react-router-dom';
+import { BackgroundBeams } from "../Components/ui/background-beams";
 
-const GoogleLoginButton = () => {
-    const handleLogin = () => {
-        console.log("Logging in with Google...");
-    };
-
-    return (
-        <div className="flex justify-center items-center">
-            <button
-                onClick={handleLogin}
-                className="flex items-center bg-[#00BFFF] text-white border border-transparent rounded-lg shadow-md px-5 py-2 transition duration-200 ease-in-out transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#00BFFF] focus:ring-opacity-50"
-            >
-                <img src={googleImage} alt="Google" className="w-6 h-6 mr-2" />
-                <span className="font-semibold">Login with Google</span>
-            </button>
-        </div>
-    );
-};
 
 export const Login = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
-    useEffect(() => {
-        const mail = localStorage.getItem("email");
-        if (mail != null) {
-            console.log(mail);
-            navigate("/dashboard");
-        }
-    }, [navigate]);
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -73,7 +49,7 @@ export const Login = () => {
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-[#0a0e14]">
-            <div className="flex flex-col md:flex-row items-center bg-[#1e1e2f] rounded-xl shadow-lg p-8 max-w-4xl w-full">
+            <div className="flex z-50 flex-col md:flex-row items-center bg-[#182238] rounded-xl shadow-lg p-8 max-w-4xl w-full">
                 <div className="hidden md:block md:w-1/2">
                     <img
                         src="https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
@@ -84,16 +60,6 @@ export const Login = () => {
 
                 <div className="w-full md:w-1/2 md:pl-10">
                     <h2 className="text-3xl font-bold text-center text-[#00BFFF] mb-6">Welcome Back</h2>
-
-                    <div className="flex justify-center mb-4 space-x-4">
-                        <GoogleLoginButton />
-                    </div>
-
-                    <div className="flex items-center mb-5">
-                        <div className="flex-1 border-t border-gray-600"></div>
-                        <p className="px-4 text-gray-400">Or</p>
-                        <div className="flex-1 border-t border-gray-600"></div>
-                    </div>
 
                     <form onSubmit={handleLogin}>
                         <input
@@ -138,8 +104,11 @@ export const Login = () => {
                             Register
                         </Link>
                     </p>
+                    
                 </div>
+                
             </div>
+            <BackgroundBeams/>  
         </div>
     );
 };
