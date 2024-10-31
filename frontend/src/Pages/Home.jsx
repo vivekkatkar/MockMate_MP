@@ -3,11 +3,13 @@ import botImage from "../assets/logo1.jpeg"; // Ensure this file exists
 import interviewImage from "../assets/interview.jpeg"; // Use a valid image path
 import { useNavigate } from "react-router-dom"
 import { Vortex } from "../Components/vortex";
-
+import styled from "styled-components";
 // Import the images for creators
-import creator1Image from "../assets/bg2.png"; 
-import creator2Image from "../assets/bg3.png";
-import creator3Image from "../assets/bot.jpeg";
+import creator1Image from "../assets/creators/image.png"; 
+import creator2Image from "../assets/creators/img2.jpeg";
+import creator3Image from "../assets/creators/img3.jpg";
+import Features from "../Components/Features";
+import Card from "../Components/Card";
 
 const Home = () => {
   const navigate = useNavigate(); 
@@ -57,77 +59,127 @@ const Home = () => {
       <div className="py-20 bg-[#121820] text-white" id="features">
         <h2 className="text-center text-3xl font-bold text-[#00BFFF] mb-12">What Makes Us Different</h2>
         <div className="flex flex-col md:flex-row justify-center items-center space-y-6 md:space-y-0 md:space-x-12 px-6">
-          <div className="rounded-[22px] max-w-sm p-4 sm:p-10 bg-[#1a1f26] shadow-lg">
-            <div className="flex justify-center text-6xl text-[#00BFFF]">🎯</div>
-            <p className="text-base sm:text-xl text-[#00BFFF] mt-4 mb-2 text-center">
+
+        <StyledWrapper>
+          <div className="card">
+            <div className="card__border" />
+            <div className="card_title__container">
+              <br /> <br />
+              <div className="flex justify-center text-6xl text-[#00BFFF]">🎯</div>
+              <p className="text-base sm:text-xl text-[#00BFFF] mt-4 mb-2 text-center">
               Realistic Interview Scenarios
-            </p>
+              </p>
+            </div>
+            
+            <hr className="line" />
+
             <p className="text-sm text-gray-400 text-center">
               AI-powered coding challenges simulating real interviews to boost your experience.
             </p>
+            <br />    <br />  <br /> <br />
           </div>
+        </StyledWrapper>
 
-          <div className="rounded-[22px] max-w-sm p-4 sm:p-10 bg-[#1a1f26] shadow-lg">
-            <div className="flex justify-center text-6xl text-[#00BFFF]">📈</div>
-            <p className="text-base sm:text-xl text-[#00BFFF] mt-4 mb-2 text-center">
+        <StyledWrapper>
+          <div className="card">
+            <div className="card__border" />
+            <div className="card_title__container">
+              <br /> <br />
+              <div className="flex justify-center text-6xl text-[#00BFFF]">📈</div>
+              <p className="text-base sm:text-xl text-[#00BFFF] mt-4 mb-2 text-center">
               Advanced Analytics
-            </p>
-            <p className="text-sm text-gray-400 text-center">
-              Track your performance and get insights on areas to improve and maximize preparation efficiency.
-            </p>
-          </div>
+              </p>
+            </div>
+            
+            <hr className="line" />
 
-          <div className="rounded-[22px] max-w-sm p-4 sm:p-10 bg-[#1a1f26] shadow-lg">
-            <div className="flex justify-center text-6xl text-[#00BFFF]">🏆</div>
-            <p className="text-base sm:text-xl text-[#00BFFF] mt-4 mb-2 text-center">
-              Build Confidence
-            </p>
             <p className="text-sm text-gray-400 text-center">
-              Practice with challenging questions, receive feedback, and gain confidence to tackle interviews.
+            Track your performance and get insights on areas to improve and maximize preparation efficiency.
             </p>
+            <br />    <br />  <br />
           </div>
+        </StyledWrapper>
+
+        <StyledWrapper>
+          <div className="card">
+            <div className="card__border" />
+            <div className="card_title__container">
+              <br /> <br />
+              <div className="flex justify-center text-6xl text-[#00BFFF]">🏆</div>
+              <p className="text-base sm:text-xl text-[#00BFFF] mt-4 mb-2 text-center">
+              Build Confidence
+              </p>
+            </div>
+            
+            <hr className="line" />
+
+            <p className="text-sm text-gray-400 text-center">
+            Practice with challenging questions, receive feedback, and gain confidence to tackle interviews.
+            </p>
+            <br />    <br />  <br />
+          </div>
+        </StyledWrapper>
+
         </div>
       </div>
 
+
+      {/* creators */}
       <div className="py-20 bg-[#0a0e14] text-white" id="creators">
         <h2 className="text-center text-3xl font-bold text-[#00BFFF] mb-12">Meet the Creators</h2>
         <div className="flex flex-col md:flex-row justify-center items-center space-y-6 md:space-y-0 md:space-x-12 px-6">
-          <div className="max-w-xs p-6 bg-[#1a1f26] rounded-lg shadow-md text-center">
-            <img src={creator1Image} alt="Creator 1" className="w-32 h-32 mx-auto rounded-full mb-4" />
-            <h3 className="text-xl font-semibold text-[#00BFFF]">Creator 1</h3>
-            <a
-              href="https://www.linkedin.com/in/creator1"
-              className="text-blue-400 hover:text-blue-500 transition"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              LinkedIn
-            </a>
-          </div>
-          <div className="max-w-xs p-6 bg-[#1a1f26] rounded-lg shadow-md text-center">
-            <img src={creator2Image} alt="Creator 2" className="w-32 h-32 mx-auto rounded-full mb-4" />
-            <h3 className="text-xl font-semibold text-[#00BFFF]">Creator 2</h3>
-            <a
-              href="https://www.linkedin.com/in/creator2"
-              className="text-blue-400 hover:text-blue-500 transition"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              LinkedIn
-            </a>
-          </div>
-          <div className="max-w-xs p-6 bg-[#1a1f26] rounded-lg shadow-md text-center">
-            <img src={creator3Image} alt="Creator 3" className="w-32 h-32 mx-auto rounded-full mb-4" />
-            <h3 className="text-xl font-semibold text-[#00BFFF]">Creator 3</h3>
-            <a
-              href="https://www.linkedin.com/in/creator3"
-              className="text-blue-400 hover:text-blue-500 transition"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              LinkedIn
-            </a>
-          </div>
+          <StyledWrapper>
+            <div className="package">
+              <div className="package2">
+              <img src={creator3Image} alt="Creator 1" className="w-32 h-32 mx-auto rounded-full mb-4" />
+              <h3 className="text-xl font-semibold text-[#00BFFF]">Pratiksha Hire</h3>
+              <a
+                href="https://www.linkedin.com/in/pratiksha-hire-441182267/"
+                className="text-blue-400 hover:text-blue-500 transition"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LinkedIn
+              </a>
+              </div>
+            </div>
+          </StyledWrapper>
+
+          <StyledWrapper>
+            <div className="package">
+              <div className="package2">
+              <img src={creator1Image} alt="Creator 1" className="w-32 h-32 mx-auto rounded-full mb-4" />
+              <h3 className="text-xl font-semibold text-[#00BFFF]">Vivek Katkar</h3>
+              <a
+                href="https://www.linkedin.com/in/vivek-katkar-81a4b41b4/"
+                className="text-blue-400 hover:text-blue-500 transition"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LinkedIn
+              </a>
+              </div>
+            </div>
+          </StyledWrapper>
+
+          <StyledWrapper>
+            <div className="package">
+              <div className="package2">
+              <img src={creator2Image} alt="Creator 1" className="w-32 h-32 mx-auto rounded-full mb-4" />
+              <h3 className="text-xl font-semibold text-[#00BFFF]">Vaishnavi Yadav</h3>
+              <a
+                href="https://www.linkedin.com/in/vaishnavi-yadav-652430267/"
+                className="text-blue-400 hover:text-blue-500 transition"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LinkedIn
+              </a>
+              </div>
+            </div>
+          </StyledWrapper>
+
+
         </div>
       </div>
 
@@ -165,5 +217,203 @@ const Home = () => {
     </div>
   );
 };
+
+
+const StyledWrapper = styled.div`
+.card {
+  --white: hsl(0, 0%, 100%);
+  --black: hsl(240, 15%, 9%);
+  --paragraph: hsl(0, 0%, 83%);
+  --line: hsl(240, 9%, 17%);
+  --primary: hsl(189, 92%, 58%);
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  padding: 1rem;
+  width: 19rem;
+  background-color: hsla(240, 15%, 9%, 1);
+  background-image: radial-gradient(
+      at 88% 40%,
+      hsla(240, 15%, 9%, 1) 0px,
+      transparent 85%
+    ),
+    radial-gradient(at 49% 30%, hsla(240, 15%, 9%, 1) 0px, transparent 85%),
+    radial-gradient(at 14% 26%, hsla(240, 15%, 9%, 1) 0px, transparent 85%),
+    radial-gradient(at 0% 100%, #00BFFF 0%, transparent 2%), /* Bottom color constrained to 25% */
+    radial-gradient(at 41% 94%, hsl(189, 97%, 36%) 0px, transparent 85%),
+    radial-gradient(at 100% 99%, hsl(188, 94%, 13%) 0px, transparent 85%);
+
+  border-radius: 1rem;
+  box-shadow: 0px -16px 24px 0px rgba(255, 255, 255, 0.25) inset;
+}
+
+
+.card .card__border {
+  overflow: hidden;
+  pointer-events: none;
+
+  position: absolute;
+  z-index: -10;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
+  background-image: linear-gradient(
+    0deg,
+    hsl(0, 0%, 100%) -50%,
+    hsl(0, 0%, 40%) 100%
+  );
+
+  border-radius: 1rem;
+}
+
+.card .card__border::before {
+  content: "";
+  pointer-events: none;
+
+  position: fixed;
+  z-index: 200;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%), rotate(0deg);
+  transform-origin: left;
+
+  width: 200%;
+  height: 10rem;
+  background-image: linear-gradient(
+    0deg,
+    hsla(0, 0%, 100%, 0) 0%,
+    hsl(189, 100%, 50%) 40%,
+    hsl(189, 100%, 50%) 60%,
+    hsla(0, 0%, 40%, 0) 100%
+  );
+
+  animation: rotate 8s linear infinite;
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.card .card_title__container .card_title {
+  font-size: 1rem;
+  color: var(--white);
+}
+
+.card .card_title__container .card_paragraph {
+  margin-top: 0.25rem;
+  width: 65%;
+
+  font-size: 0.5rem;
+  color: var(--paragraph);
+}
+
+.card .line {
+  width: 100%;
+  height: 0.1rem;
+  background-color: var(--line);
+
+  border: none;
+}
+
+.card .card__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.card .card__list .card__list_item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.card .card__list .card__list_item .check {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--primary);
+
+  border-radius: 50%;
+}
+
+.card .card__list .card__list_item .check .check_svg {
+  width: 0.75rem;
+  height: 0.75rem;
+
+  fill: var(--black);
+}
+
+.card .card__list .card__list_item .list_text {
+  font-size: 0.75rem;
+  color: var(--white);
+}
+
+.card .button {
+  cursor: pointer;
+
+  padding: 0.5rem;
+  width: 100%;
+  background-image: linear-gradient(
+    0deg,
+    hsl(189, 92%, 58%),
+    hsl(189, 99%, 26%) 100%
+  );
+
+  font-size: 0.75rem;
+  color: var(--white);
+
+  border: 0;
+  border-radius: 9999px;
+  box-shadow: inset 0 -2px 25px -4px var(--white);
+}
+
+.package {
+  width: 200px;
+  height: 254px;
+  // background-image: linear-gradient(163deg, #ff00ff 0%, #3700ff 100%);
+  border-radius: 20px;
+  text-align: center;
+  transition: all 0.25s cubic-bezier(0, 0, 0, 1);
+  filter: drop-shadow(0px 0px 10px rgba(0, 191, 255, 0.5))
+}
+
+.package:hover {
+  filter: drop-shadow(0px 0px 15px rgba(0, 191, 255, 0.5))
+}
+
+.package2 {
+  width: 200px;
+  height: 254px;
+  background-color: black;
+  border-radius: 10px;
+  transition: all 0.25s cubic-bezier(0, 0, 0, 1);
+  padding: 15px;
+  cursor: pointer;
+}
+
+.package2:hover {
+  transform: scale(0.98);
+  border-radius: 18px;
+}
+
+.text {
+  color: white;
+  font-size: 17px;
+}
+
+
+`;
+
 
 export default Home;
