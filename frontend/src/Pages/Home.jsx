@@ -16,12 +16,12 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-[#0a0e14] text-white">
       
-      <nav className="flex items-center justify-between px-6 py-4 bg-[#0a0e14]">
+      <nav className="flex items-center justify-between px-6 py-6 bg-[#0a0e14]">
         <div className="flex items-center space-x-3">
           <img src={botImage} alt="Mock Mate Logo" className="h-10" />
-          <span className="text-xl font-bold text-[#00BFFF]">Mock Mate</span>
+          <span className="text-4xl font-bold text-[#00BFFF]">Mock Mate</span>
         </div>
-        <div className="space-x-8 text-lg">
+        <div className="space-x-8 text-2xl">
           <a href="#features" className="hover:text-[#00BFFF]">Features</a>
           <a href="/Signup" className="hover:text-[#00BFFF]">Signup</a>
           <a href="/Login" className="hover:text-[#00BFFF]">Login</a>
@@ -57,127 +57,42 @@ const Home = () => {
 
       {/* Features Section */}
       <div className="py-20 bg-[#121820] text-white" id="features">
-        <h2 className="text-center text-3xl font-bold text-[#00BFFF] mb-12">What Makes Us Different</h2>
+        <h2 className="text-center text-4xl font-bold text-[#00BFFF] mb-12">What Makes Us Different</h2>
         <div className="flex flex-col md:flex-row justify-center items-center space-y-6 md:space-y-0 md:space-x-12 px-6">
 
         <StyledWrapper>
-          <div className="card">
-            <div className="card__border" />
-            <div className="card_title__container">
-              <br /> <br />
-              <div className="flex justify-center text-6xl text-[#00BFFF]">🎯</div>
-              <p className="text-base sm:text-xl text-[#00BFFF] mt-4 mb-2 text-center">
-              Realistic Interview Scenarios
-              </p>
-            </div>
-            
-            <hr className="line" />
-
-            <p className="text-sm text-gray-400 text-center">
-              AI-powered coding challenges simulating real interviews to boost your experience.
-            </p>
-            <br />    <br />  <br /> <br />
-          </div>
-        </StyledWrapper>
+  <div className="card flex flex-col items-center justify-between min-h-[440px] p-6 bg-gray-900 rounded-lg shadow-lg text-center">
+    <div className="flex justify-center text-6xl text-[#00BFFF] mt-4">🎯</div>
+    <p className="text-2xl  font-semibold text-[#00BFFF]">Realistic Interview Scenarios</p>
+    <hr className="w-3/4 border-gray-700" />
+    <p className="text-lg text-gray-400 pb-14">
+    AI-powered coding challenges simulating real interviews to boost your experience.
+    </p>
+  </div>
+</StyledWrapper>
 
         <StyledWrapper>
-          <div className="card">
-            <div className="card__border" />
-            <div className="card_title__container">
-              <br /> <br />
-              <div className="flex justify-center text-6xl text-[#00BFFF]">📈</div>
-              <p className="text-base sm:text-xl text-[#00BFFF] mt-4 mb-2 text-center">
-              Advanced Analytics
-              </p>
-            </div>
-            
-            <hr className="line" />
+  <div className="card flex flex-col items-center justify-between min-h-[440px] p-6 bg-gray-900 rounded-lg shadow-lg text-center">
+    <div className="flex justify-center text-6xl text-[#00BFFF] mt-4">📈</div>
+    <p className="text-2xl font-semibold text-[#00BFFF]">Advanced Analytics</p>
+    <hr className="w-3/4 border-gray-700" />
+    <p className="text-lg text-gray-400 pb-14">
+      Track your performance and get insights on areas to improve and maximize preparation efficiency.
+    </p>
+  </div>
+</StyledWrapper>
 
-            <p className="text-sm text-gray-400 text-center">
-            Track your performance and get insights on areas to improve and maximize preparation efficiency.
-            </p>
-            <br />    <br />  <br />
-          </div>
-        </StyledWrapper>
+<StyledWrapper>
+  <div className="card flex flex-col items-center justify-between min-h-[440px] p-6 bg-gray-900 rounded-lg shadow-lg text-center">
+    <div className="flex justify-center text-6xl text-[#00BFFF] mt-4">🏆</div>
+    <p className="text-2xl font-semibold text-[#00BFFF]">Build Confidence</p>
+    <hr className="w-3/4 border-gray-700" />
+    <p className="text-lg text-gray-400 pb-14">
+      Practice with challenging questions, receive feedback, and gain confidence to tackle interviews.
+    </p>
+  </div>
+</StyledWrapper>
 
-        <StyledWrapper>
-          <div className="card">
-            <div className="card__border" />
-            <div className="card_title__container">
-              <br /> <br />
-              <div className="flex justify-center text-6xl text-[#00BFFF]">🏆</div>
-              <p className="text-base sm:text-xl text-[#00BFFF] mt-4 mb-2 text-center">
-              Build Confidence
-              </p>
-            </div>
-            
-            <hr className="line" />
-
-            <p className="text-sm text-gray-400 text-center">
-            Practice with challenging questions, receive feedback, and gain confidence to tackle interviews.
-            </p>
-            <br />    <br />  <br />
-          </div>
-        </StyledWrapper>
-
-        </div>
-      </div>
-
-
-      {/* creators */}
-      <div className="py-20 bg-[#0a0e14] text-white" id="creators">
-        <h2 className="text-center text-3xl font-bold text-[#00BFFF] mb-12">Meet the Creators</h2>
-        <div className="flex flex-col md:flex-row justify-center items-center space-y-6 md:space-y-0 md:space-x-12 px-6">
-          <StyledWrapper>
-            <div className="package">
-              <div className="package2">
-              <img src={creator3Image} alt="Creator 1" className="w-32 h-32 mx-auto rounded-full mb-4" />
-              <h3 className="text-xl font-semibold text-[#00BFFF]">Pratiksha Hire</h3>
-              <a
-                href="https://www.linkedin.com/in/pratiksha-hire-441182267/"
-                className="text-blue-400 hover:text-blue-500 transition"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                LinkedIn
-              </a>
-              </div>
-            </div>
-          </StyledWrapper>
-
-          <StyledWrapper>
-            <div className="package">
-              <div className="package2">
-              <img src={creator1Image} alt="Creator 1" className="w-32 h-32 mx-auto rounded-full mb-4" />
-              <h3 className="text-xl font-semibold text-[#00BFFF]">Vivek Katkar</h3>
-              <a
-                href="https://www.linkedin.com/in/vivek-katkar-81a4b41b4/"
-                className="text-blue-400 hover:text-blue-500 transition"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                LinkedIn
-              </a>
-              </div>
-            </div>
-          </StyledWrapper>
-
-          <StyledWrapper>
-            <div className="package">
-              <div className="package2">
-              <img src={creator2Image} alt="Creator 1" className="w-32 h-32 mx-auto rounded-full mb-4" />
-              <h3 className="text-xl font-semibold text-[#00BFFF]">Vaishnavi Yadav</h3>
-              <a
-                href="https://www.linkedin.com/in/vaishnavi-yadav-652430267/"
-                className="text-blue-400 hover:text-blue-500 transition"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                LinkedIn
-              </a>
-              </div>
-            </div>
-          </StyledWrapper>
 
 
         </div>
@@ -185,7 +100,7 @@ const Home = () => {
 
       {/* Contact Us Section */}
       <div className="py-20 bg-[#0e1217] text-white" id="contact">
-        <h2 className="text-center text-3xl font-bold text-[#00BFFF] mb-12">Contact Us</h2>
+        <h2 className="text-center text-4xl font-bold text-[#00BFFF] mb-12">Contact Us</h2>
         <div className="flex flex-col items-center space-y-6 px-6">
           <p className="text-gray-400 text-lg text-center max-w-lg">
             Have any questions or need help? We are here for you! Feel free to reach out to us via the form below.

@@ -17,7 +17,7 @@ const MockInterviewReports = ({ reports }) => {
 
   return (
     <div>
-      <h3 className="text-2xl font-semibold mt-10 text-[#00BFFF] text-center">Your Mock Interview Reports:</h3>
+      <h3 className="text-4xl font-semibold my-10 text-[#00BFFF] text-center">Your Mock Interview Reports:</h3>
       {reports.length === 0 ? (
         <p className="text-center mt-3">No reports available.</p>
       ) : (

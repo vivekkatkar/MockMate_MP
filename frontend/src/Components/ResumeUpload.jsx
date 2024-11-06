@@ -39,7 +39,7 @@ export function ResumeUpload() {
   };
 
   return (
-    <div className="w-full h-screen flex items-center justify-center bg-[#111827]">
+    <div className="w-full h-[30rem] flex items-center justify-center bg-[#111827] overflow-hidden">
       <div className="w-[90%] max-w-xl bg-[#1F2937] rounded-xl shadow-lg p-8">
         <h3 className="text-3xl text-white font-bold mb-6 text-center">
           Upload Your Resume

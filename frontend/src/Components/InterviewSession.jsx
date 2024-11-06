@@ -164,7 +164,7 @@ const InterviewSession = () => {
       }
     }, [isListening]);
   
-    // hii zopli ka?
+
     const handleSubmit = (e) => {
         e.preventDefault();
 

@@ -4,6 +4,7 @@ import { FaUserCircle, FaEnvelope } from "react-icons/fa";
 import axios from "axios";
 import MockInterviewReports from "../Components/Reports.jsx";
 import { ResumeUpload } from "./ResumeUpload";
+import { HashLoader } from "react-spinners";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -37,7 +38,9 @@ const Dashboard = () => {
   }, [email, navigate]);
 
   if (loading) {
-    return <div className="text-center mt-10">Loading...</div>;
+    return  <div className="flex items-center justify-center h-screen">
+    <HashLoader color="#d1d5db" />
+  </div>
   }
 
   if (error) {
@@ -51,7 +54,7 @@ const Dashboard = () => {
     return (total / accuracyArray.length).toFixed(2);
   };
   return (
-    <div className="container mx-auto p-5 bg-[#0E1217]">
+    <div className="container mx-auto p-5 bg-[#0E1217] h-screen pt-10">
       <div className="flex flex-col items-center space-y-6">
         {/* Profile Card */}
         <div className="w-full md:w-1/3 max-w-sm bg-gray-900 text-white rounded-lg shadow-lg overflow-hidden">

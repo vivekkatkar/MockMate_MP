@@ -63,7 +63,7 @@ export const Signup = () => {
                 </div>
 
                 <div className="w-full md:w-1/2 md:pl-10">
-                    <h2 className="text-3xl font-bold text-center text-[#00BFFF] mb-6">Create an Account</h2>
+                    <h2 className="text-4xl font-bold text-center text-[#00BFFF] mb-6">Create an Account</h2>
 
                     <form onSubmit={handleSignup}>
                         <input

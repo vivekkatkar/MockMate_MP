@@ -11,12 +11,12 @@ export function Header({changeState, changeState1}) {
   };
 
   return (
-    <header className="bg-[#0a0e14] h-[60px] px-6 text-white flex items-center justify-between">
+    <header className="bg-[#0a0e14] py-6 px-6 text-white flex items-center justify-between">
       <div className='flex items-center'>
         <img src={logo} alt="Logo" className="h-15 w-12 mr-2"/>
-        <p className="text-[1.5rem] font-extrabold text-[#00BFFF]">MockMate</p>
+        <p className="text-4xl font-extrabold text-[#00BFFF]">MockMate</p>
       </div>
-      <nav className="flex items-center space-x-4">
+      <nav className="flex items-center space-x-4 text-2xl">
         <a href="#" className="hover:none" onClick={changeState} >Interview</a>
         <a href="#" className="hover:none" onClick={changeState1} >Profile</a>
         <button 
