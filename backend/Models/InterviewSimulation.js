@@ -5,7 +5,7 @@ const WebSocket = require("ws");
 const wss = new WebSocket.Server({
     port: 8000,
     verifyClient: (info, cb) => {
-      if (info.origin === 'your-frontend-url') {
+      if (info.origin === 'https://mock-mate-mp.vercel.app/') {
         cb(true);
       } else {
         cb(false);
