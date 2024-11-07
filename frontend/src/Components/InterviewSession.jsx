@@ -81,7 +81,7 @@ const InterviewSession = () => {
             // fetch('http://localhost:3000/gemini/questions', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json'  //
             },
             body: JSON.stringify({ email: localStorage.getItem("email") })
         })
