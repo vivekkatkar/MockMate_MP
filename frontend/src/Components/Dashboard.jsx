@@ -24,7 +24,8 @@ const Dashboard = () => {
       };
 
       axios
-        .post("http://localhost:3000/user/getUser", data)
+        .post("https://mockmate-mp.onrender.com/user/getUser", data)
+        // .post("http://localhost:3000/user/getUser", data)
         .then((response) => {
           setUserData(response.data);
           setLoading(false);

@@ -29,7 +29,9 @@ export const Signup = () => {
         };
     
         try {
-            const response = await fetch('http://localhost:3000/user/signup', {
+            console.log("Calling backend");
+            const response = await fetch('https://mockmate-mp.onrender.com/user/signup', {
+                // const response = await fetch('http://localhost:3000/user/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json', 

@@ -77,7 +77,8 @@ const InterviewSession = () => {
 
 
     useEffect(() => {
-        fetch('http://localhost:3000/gemini/questions', {
+        fetch('https://mockmate-mp.onrender.com/gemini/questions', {
+            // fetch('http://localhost:3000/gemini/questions', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
