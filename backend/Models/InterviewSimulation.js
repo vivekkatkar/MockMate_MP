@@ -98,7 +98,7 @@ async function Interview(queList, secIds, reportId){
     const wss = new WebSocket.Server({
         port: 8000
     });
-      
+    console.log("Websocket created");
     
     wss.on("connection", (ws) => {
         console.log("User connected through websocket");
