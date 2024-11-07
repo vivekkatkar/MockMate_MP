@@ -88,7 +88,7 @@ const InterviewSession = () => {
             .then(response => response.text())
             .then(data => {
                 console.log("Trying to connect with backend");
-                const socket = new WebSocket('wss://mockmate-mp.onrender.com:8000');
+                const socket = new WebSocket('wss://mockmate-mp.onrender.com');
                 setSsocket(socket);
 
                 socket.onopen = () => {

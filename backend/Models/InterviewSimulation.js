@@ -6,6 +6,7 @@ const wss = new WebSocket.Server({
     port: 8000
   });
   
+console.log("Websocket is available on port 8000");
 
 const dotenv = require("dotenv");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
