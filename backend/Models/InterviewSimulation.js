@@ -1,5 +1,19 @@
 const WebSocket = require("ws");
-const wss = new WebSocket.Server({port : 8000});
+
+// const wss = new WebSocket.Server({port : 8000});
+
+const wss = new WebSocket.Server({
+    port: 8000,
+    verifyClient: (info, cb) => {
+      if (info.origin === 'your-frontend-url') {
+        cb(true);
+      } else {
+        cb(false);
+      }
+    }
+  });
+  
+
 const dotenv = require("dotenv");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const { route } = require("./ResumeParser.js");
