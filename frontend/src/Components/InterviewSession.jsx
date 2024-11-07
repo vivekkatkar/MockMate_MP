@@ -87,7 +87,7 @@ const InterviewSession = () => {
         })
             .then(response => response.text())
             .then(data => {
-                const socket = new WebSocket('ws://localhost:8000');
+                const socket = new WebSocket('wss://mockmate-mp.onrender.com:8000');
                 setSsocket(socket);
 
                 socket.onopen = () => {

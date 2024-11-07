@@ -10,6 +10,8 @@ const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 const {addFeedback, finalizeFeedback} = require("../Database/index.js")
 
+
+
 const cleanResponse = (response) => {
     const jsonStart = response.indexOf('{');
     const jsonEnd = response.lastIndexOf('}');
