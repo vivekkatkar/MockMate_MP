@@ -8,7 +8,7 @@ const {InsertResume} = require("./Database/index.js")
 const app = express();
 
 app.use(express.json());
-app.use(cors({ origin: '*' }));
+app.use(cors({ origin: 'https://mock-mate-mp.vercel.app' }));
 
 const parserRouter = require("./Models/ResumeParser");
 const questionsRouter = require("./Models/QuestionGeneration");
