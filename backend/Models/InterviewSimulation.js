@@ -98,6 +98,11 @@ async function Interview(queList, secIds, reportId){
     const wss = new WebSocket.Server({
         port: 8000
     });
+    
+    wss.on("headers", (headers, req) => {
+        headers.push("Access-Control-Allow-Origin: *");
+    });
+
     console.log("Websocket created");
     
     wss.on("connection", (ws) => {
