@@ -2,11 +2,11 @@ const WebSocket = require("ws");
 
 // const wss = new WebSocket.Server({port : 8000});
 
-const wss = new WebSocket.Server({
-    port: 8000
-  });
+// const wss = new WebSocket.Server({
+//     port: 8000
+// });
   
-console.log("Websocket is available on port 8000");
+// console.log("Websocket is available on port 8000");
 
 const dotenv = require("dotenv");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
@@ -94,6 +94,11 @@ function getSecId(queIdx, currSec, secIds, cnt){
 
 async function Interview(queList, secIds, reportId){
     console.log("Interview Started");
+
+    const wss = new WebSocket.Server({
+        port: 8000
+    });
+      
     
     wss.on("connection", (ws) => {
         console.log("User connected through websocket");
